@@ -1,5 +1,0 @@
-2017-10-25 17:54:42.860 [info] <0.7.0> Application lager started on node 'gateway@127.0.0.1'
-2017-10-25 17:54:42.866 [info] <0.7.0> Application gateway started on node 'gateway@127.0.0.1'
-2017-10-25 17:54:42.889 [info] <0.7.0> Application sasl started on node 'gateway@127.0.0.1'
-2017-10-25 17:54:42.896 [info] <0.2.0> [liquan] gateway:25 start loginserver ......
-2017-10-25 17:54:42.935 [info] <0.2.0>@gateway:start:28 =============>>>> test lager info

@@ -10,9 +10,9 @@
 -ifndef('PERSON_PB_H').
 -define('PERSON_PB_H', true).
 -record(person,
-        {name                   :: iodata(),        % = 1
-         id                     :: integer(),       % = 2, 32 bits
-         email                  :: iodata() | undefined % = 3
+        {name = <<>>            :: iodata() | undefined, % = 1
+         id = 0                 :: integer() | undefined, % = 2, 32 bits
+         email = <<>>           :: iodata() | undefined % = 3
         }).
 -endif.
 

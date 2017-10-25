@@ -57,19 +57,33 @@ e_msg_person(Msg, TrUserData) ->
 
 e_msg_person(#person{name = F1, id = F2, email = F3},
 	     Bin, TrUserData) ->
-    B1 = begin
-	   TrF1 = id(F1, TrUserData),
-	   e_type_string(TrF1, <<Bin/binary, 10>>)
+    B1 = if F1 == undefined -> Bin;
+	    true ->
+		begin
+		  TrF1 = id(F1, TrUserData),
+		  case is_empty_string(TrF1) of
+		    true -> Bin;
+		    false -> e_type_string(TrF1, <<Bin/binary, 10>>)
+		  end
+		end
 	 end,
-    B2 = begin
-	   TrF2 = id(F2, TrUserData),
-	   e_type_int32(TrF2, <<B1/binary, 16>>)
+    B2 = if F2 == undefined -> B1;
+	    true ->
+		begin
+		  TrF2 = id(F2, TrUserData),
+		  if TrF2 =:= 0 -> B1;
+		     true -> e_type_int32(TrF2, <<B1/binary, 16>>)
+		  end
+		end
 	 end,
     if F3 == undefined -> B2;
        true ->
 	   begin
 	     TrF3 = id(F3, TrUserData),
-	     e_type_string(TrF3, <<B2/binary, 26>>)
+	     case is_empty_string(TrF3) of
+	       true -> B2;
+	       false -> e_type_string(TrF3, <<B2/binary, 26>>)
+	     end
 	   end
     end.
 
@@ -92,6 +106,25 @@ e_varint(N, Bin) ->
     Bin2 = <<Bin/binary, (N band 127 bor 128)>>,
     e_varint(N bsr 7, Bin2).
 
+is_empty_string("") -> true;
+is_empty_string(<<>>) -> true;
+is_empty_string(L) when is_list(L) ->
+    not string_has_chars(L);
+is_empty_string(B) when is_binary(B) -> false.
+
+string_has_chars([C | _]) when is_integer(C) -> true;
+string_has_chars([H | T]) ->
+    case string_has_chars(H) of
+      true -> true;
+      false -> string_has_chars(T)
+    end;
+string_has_chars(B)
+    when is_binary(B), byte_size(B) =/= 0 ->
+    true;
+string_has_chars(C) when is_integer(C) -> true;
+string_has_chars(<<>>) -> false;
+string_has_chars([]) -> false.
+
 
 
 decode_msg(Bin, MsgName) when is_binary(Bin) ->
@@ -107,9 +140,8 @@ decode_msg(Bin, MsgName, Opts) when is_binary(Bin) ->
 
 d_msg_person(Bin, TrUserData) ->
     dfp_read_field_def_person(Bin, 0, 0,
-			      id(undefined, TrUserData),
-			      id(undefined, TrUserData),
-			      id(undefined, TrUserData), TrUserData).
+			      id(<<>>, TrUserData), id(0, TrUserData),
+			      id(<<>>, TrUserData), TrUserData).
 
 dfp_read_field_def_person(<<10, Rest/binary>>, Z1, Z2,
 			  F1, F2, F3, TrUserData) ->
@@ -315,10 +347,18 @@ merge_msgs(Prev, New, Opts)
       #person{} -> merge_msg_person(Prev, New, TrUserData)
     end.
 
-merge_msg_person(#person{email = PFemail},
+merge_msg_person(#person{name = PFname, id = PFid,
+			 email = PFemail},
 		 #person{name = NFname, id = NFid, email = NFemail},
 		 _) ->
-    #person{name = NFname, id = NFid,
+    #person{name =
+		if NFname =:= undefined -> PFname;
+		   true -> NFname
+		end,
+	    id =
+		if NFid =:= undefined -> PFid;
+		   true -> NFid
+		end,
 	    email =
 		if NFemail =:= undefined -> PFemail;
 		   true -> NFemail
@@ -339,8 +379,12 @@ verify_msg(Msg, Opts) ->
 -dialyzer({nowarn_function,v_msg_person/3}).
 v_msg_person(#person{name = F1, id = F2, email = F3},
 	     Path, _) ->
-    v_type_string(F1, [name | Path]),
-    v_type_int32(F2, [id | Path]),
+    if F1 == undefined -> ok;
+       true -> v_type_string(F1, [name | Path])
+    end,
+    if F2 == undefined -> ok;
+       true -> v_type_int32(F2, [id | Path])
+    end,
     if F3 == undefined -> ok;
        true -> v_type_string(F3, [email | Path])
     end,
@@ -394,9 +438,9 @@ id(X, _TrUserData) -> X.
 get_msg_defs() ->
     [{{msg, person},
       [#field{name = name, fnum = 1, rnum = 2, type = string,
-	      occurrence = required, opts = []},
+	      occurrence = optional, opts = []},
        #field{name = id, fnum = 2, rnum = 3, type = int32,
-	      occurrence = required, opts = []},
+	      occurrence = optional, opts = []},
        #field{name = email, fnum = 3, rnum = 4, type = string,
 	      occurrence = optional, opts = []}]}].
 
@@ -427,9 +471,9 @@ fetch_enum_def(EnumName) ->
 
 find_msg_def(person) ->
     [#field{name = name, fnum = 1, rnum = 2, type = string,
-	    occurrence = required, opts = []},
+	    occurrence = optional, opts = []},
      #field{name = id, fnum = 2, rnum = 3, type = int32,
-	    occurrence = required, opts = []},
+	    occurrence = optional, opts = []},
      #field{name = email, fnum = 3, rnum = 4, type = string,
 	    occurrence = optional, opts = []}];
 find_msg_def(_) -> error.

@@ -44,8 +44,9 @@ init([]) ->
         Restart, Shutdown, Type, ['server_tcp_acceptor_sup']},
 	ServerTcpClientSup = {'server_tcp_client_sup', {'server_tcp_client_sup', start_link, []},
         Restart, Shutdown, Type, ['server_tcp_client_sup']},
-
-    {ok, {SupFlags, [ServerTcpListenSup,ServerTcpAcceptorSup,ServerTcpClientSup]}}.
+	NodesListenSup = {'nodes_listen_sup', {'nodes_listen_sup', start_link, []},
+        Restart, Shutdown, Type, ['nodes_listen_sup']},
+    {ok, {SupFlags, [ServerTcpListenSup,ServerTcpAcceptorSup,ServerTcpClientSup,NodesListenSup]}}.
 
 %%====================================================================
 %% Internal functions

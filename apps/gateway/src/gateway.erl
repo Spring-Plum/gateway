@@ -22,9 +22,10 @@ start()->
 %% 	application:start(goldrush),
 	application:start(lager),
 %% 	lager:start(),
-	?INFO(liquan,"start loginserver ......"),
+	?INFO(liquan,"===============================> start loginserver ......"),
 %% 	application:start(gateway),
 	start_listen_proc(),
+	?INFO(liquan,"===============================> start loginserver success <==========================="),
 	start_success.
 
 

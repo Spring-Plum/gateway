@@ -4,4 +4,4 @@ external_includes=
 external_modules=
 include_dirs=_build/default/deps/goldrush/include;_build/default/deps/lager/include;_build/default/deps/emysql/include;apps/gateway/include;
 output_dir=ebin
-source_dirs=test;_build/default/deps/emysql/src;_build/default/deps/lager/src;_build/default/deps/goldrush/src;apps/gateway/src;
+source_dirs=_build/default/deps/emysql/src;_build/default/deps/lager/src;_build/default/deps/goldrush/src;apps/gateway/src;apps/gateway/test;

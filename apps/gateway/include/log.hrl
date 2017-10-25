@@ -1,0 +1,17 @@
+-define(DEBUG(Label,Message), lager:log(debug, self(), io_lib:format("~p ~p:~p ", [[Label],?MODULE,?LINE])++Message)).
+-define(DEBUG(Label,Message, Args), lager:log(debug, self(), io_lib:format("~p ~p:~p ", [[Label],?MODULE,?LINE])++Message, Args)).
+-define(INFO(Label,Message), lager:log(info, self(), io_lib:format("~p ~p:~p ", [[Label],?MODULE,?LINE])++Message)).
+-define(INFO(Label,Message, Args), lager:log(info, self(), io_lib:format("~p ~p:~p ", [[Label],?MODULE,?LINE])++Message, Args)).
+-define(NOTICE(Label,Message), lager:log(notice, self(), io_lib:format("~p ~p:~p ", [[Label],?MODULE,?LINE])++Message)).
+-define(NOTICE(Label,Message, Args), lager:log(notice, self(), io_lib:format("~p ~p:~p ", [[Label],?MODULE,?LINE])++Message, Args)).
+-define(WARNING(Label,Message), lager:log(warning, self(), io_lib:format("~p ~p:~p ", [[Label],?MODULE,?LINE])++Message)).
+-define(WARNING(Label,Message, Args), lager:log(warning, self(), io_lib:format("~p ~p:~p ", [[Label],?MODULE,?LINE])++Message, Args)).
+-define(ERROR(Label,Message), lager:log(error, self(), io_lib:format("~p ~p:~p ", [[Label],?MODULE,?LINE])++Message)).
+-define(ERROR(Label,Message, Args), lager:log(error, self(), io_lib:format("~p ~p:~p ", [[Label],?MODULE,?LINE])++Message, Args)).
+-define(CRITICAL(Label,Message), lager:log(critical, self(), io_lib:format("~p ~p:~p ", [[Label],?MODULE,?LINE])++Message)).
+-define(CRITICAL(Label,Message, Args), lager:log(critical, self(), io_lib:format("~p ~p:~p ", [[Label],?MODULE,?LINE])++Message, Args)).
+-define(ALERT(Label,Message), lager:log(alert, self(), io_lib:format("~p ~p:~p ", [[Label],?MODULE,?LINE])++Message)).
+-define(ALERT(Label,Message, Args), lager:log(alert, self(), io_lib:format("~p ~p:~p ", [[Label],?MODULE,?LINE])++Message, Args)).
+-define(EMERGENCY(Label,Message), lager:log(emergency, self(), io_lib:format("~p ~p:~p ", [[Label],?MODULE,?LINE])++Message)).
+-define(EMERGENCY(Label,Message, Args), lager:log(emergency, self(), io_lib:format("~p ~p:~p ", [[Label],?MODULE,?LINE])++Message, Args)).
+-define(TEST_INFO(Message),lager:info(Message)).

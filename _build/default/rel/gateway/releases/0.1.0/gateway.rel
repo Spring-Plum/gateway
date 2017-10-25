@@ -1,0 +1,10 @@
+{release,{"gateway","0.1.0"},
+         {erts,"7.0"},
+         [{kernel,"4.0"},
+          {stdlib,"2.5"},
+          {syntax_tools,"1.7"},
+          {compiler,"6.0"},
+          {goldrush,"0.1.9"},
+          {lager,"3.5.2"},
+          {gateway,"0.1.0"},
+          {sasl,"2.5"}]}. 

@@ -1,0 +1,7 @@
+backend_version=20.0
+eclipse.preferences.version=1
+external_includes=
+external_modules=
+include_dirs=_build/default/deps/goldrush/include;_build/default/deps/lager/include;_build/default/deps/emysql/include;apps/gateway/include;
+output_dir=ebin
+source_dirs=test;_build/default/deps/emysql/src;_build/default/deps/lager/src;_build/default/deps/goldrush/src;apps/gateway/src;

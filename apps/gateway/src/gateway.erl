@@ -34,22 +34,19 @@ start_listen_proc()->
 	case application:get_env(gateway,listen_socket_info) of
 	  {ok,ListenSocketInfoList}->
 	    ?INFO(liquan,"load listen_socket_info =~p~n",[ListenSocketInfoList]),
-	    F = fun(ListenSocketInfo)->
-				case ListenSocketInfo of
-					{IP,Port}->
-						Num = 1;
-					{IP,Port,Num}->
-						ok;
-					_->
-						Num = 1,
-						IP = "0.0.0.0",
-						Port = 8888
-				end,
-		        Temp = server_tcp_listen_sup:start_child(IP,Port,Num),
-		        ?DEBUG(liquan,"start server_tcp_listen_sup child result = ~p~n",[Temp]),
-		        ok
-	      end,
-	    lists:foreach(F,ListenSocketInfoList);
+		case ListenSocketInfoList of
+			{IP,Port}->
+				Num = 10;
+			{IP,Port,Num}->
+				ok;
+			_->
+				Num = 1,
+				IP = "0.0.0.0",
+				Port = 8888
+		end,
+        Temp = server_tcp_listen_sup:start_child(IP,Port,Num),
+        ?DEBUG(liquan,"start server_tcp_listen_sup child result = ~p~n",[Temp]),
+        ok;
 	  _->
 	    error
 	end.

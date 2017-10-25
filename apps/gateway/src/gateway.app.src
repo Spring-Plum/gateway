@@ -8,7 +8,7 @@
     stdlib,
     lager
    ]},
-  {env,[{listen_socket_info,[{"127.0.0.1",50001,10}]}]},
+  {env,[{listen_socket_info,{"127.0.0.1",50001,10}}]},
   {modules, []},
 
   {maintainers, []},

@@ -7,7 +7,7 @@
 %% ====================================================================
 %% API functions
 %% ====================================================================
--export([start/0]).
+-export([stop/0,start/0]).
 -include("log.hrl").
 
 
@@ -28,7 +28,8 @@ start()->
 	?INFO(liquan,"===============================> start loginserver success <==========================="),
 	start_success.
 
-
+stop()->
+	application:stop(gateway).
 
 start_listen_proc()->
 	case application:get_env(gateway,listen_socket_info) of

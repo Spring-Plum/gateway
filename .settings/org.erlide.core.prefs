@@ -4,4 +4,4 @@ external_includes=
 external_modules=
 include_dirs=_build/default/deps/goldrush/include;_build/default/deps/lager/include;_build/default/deps/emysql/include;apps/gateway/include;
 output_dir=ebin
-source_dirs=_build/default/deps/emysql/src;_build/default/deps/lager/src;_build/default/deps/goldrush/src;apps/gateway/src;apps/gateway/test;
+source_dirs=apps/websocket/src;_build/default/deps/erlsom/src;_build/default/deps/ranch/src;_build/default/deps/cowlib/src;_build/default/deps/cowboy/src;_build/default/deps/emysql/src;_build/default/deps/lager/src;_build/default/deps/goldrush/src;apps/gateway/src;apps/gateway/test;

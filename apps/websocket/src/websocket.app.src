@@ -1,13 +1,12 @@
-{application, gateway,
+{application, websocket,
  [{description, "An OTP application"},
   {vsn, "0.1.0"},
   {registered, []},
-  {mod, { gateway_app, []}},
+  {mod, { websocket_app, []}},
   {applications,
    [kernel,
     stdlib,
-    lager,
-    erlsom
+    cowboy
    ]},
   {env,[]},
   {modules, []},

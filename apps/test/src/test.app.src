@@ -1,13 +1,11 @@
-{application, gateway,
+{application, test,
  [{description, "An OTP application"},
   {vsn, "0.1.0"},
   {registered, []},
-  {mod, { gateway_app, []}},
+  {mod, { test_app, []}},
   {applications,
    [kernel,
-    stdlib,
-    lager,
-    erlsom
+    stdlib
    ]},
   {env,[]},
   {modules, []},

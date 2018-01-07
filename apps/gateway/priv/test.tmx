@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2017.11.22" orientation="orthogonal" renderorder="right-down" width="18" height="32" tilewidth="32" tileheight="32" infinite="0" nextobjectid="19">
+<map version="1.0" tiledversion="2017.11.22" orientation="orthogonal" renderorder="right-down" width="18" height="5" tilewidth="32" tileheight="32" infinite="0" nextobjectid="19">
  <tileset firstgid="1" name="obj" tilewidth="96" tileheight="64" tilecount="1" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="5">
@@ -9,51 +9,36 @@
    <image width="96" height="64" source="../../../../../tools/tiled-windows-64bit-snapshot/examples/sticker-knight/map/blobBlue.png"/>
   </tile>
  </tileset>
+ <tileset firstgid="7" name="sprites" tilewidth="32" tileheight="32" tilecount="3840" columns="60">
+  <image source="../../../../../tools/tiled-windows-64bit-snapshot/examples/sticker-knight/sprites.png" width="1920" height="2048"/>
+  <tile id="242">
+   <properties>
+    <property name="id" type="int" value="1"/>
+   </properties>
+  </tile>
+  <tile id="362">
+   <properties>
+    <property name="id" type="int" value="2"/>
+   </properties>
+  </tile>
+ </tileset>
  <imagelayer name="back_groud">
   <image source="../../../../../BaiduDownload/20140822_《糖果萌萌消》/JellyBlast iOS.app/res/Background/BG_01.png" width="577" height="1024"/>
  </imagelayer>
- <layer name="tiled_map" width="18" height="32" locked="1">
+ <layer name="tiled_map" width="18" height="5">
   <properties>
    <property name="test_tiled_map" type="int" value="100"/>
   </properties>
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+249,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+309,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+369,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+369,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+430,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="obj">
-  <object id="16" gid="6" x="160" y="639" width="62" height="63"/>
+ <objectgroup name="obj" visible="0" locked="1">
   <object id="18" gid="6" x="0" y="0" width="96" height="64"/>
  </objectgroup>
- <objectgroup name="obj2"/>
+ <objectgroup name="obj2" visible="0" locked="1"/>
 </map>

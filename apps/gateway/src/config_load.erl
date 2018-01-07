@@ -10,7 +10,8 @@
 -export([load/0]).
 
 
-
+-record(map_info,{id,map_data_info_list=[]}).
+-record(map_data_info,{height,width,tiled_map_info}).
 %% ====================================================================
 %% Internal functions
 %% ====================================================================
@@ -29,8 +30,8 @@ load()->
 %% 			io:format("Result 2 = ~p~n", [Tail]),
 			{Tag, Attributes, Content} = Element,
 %% 			io:format("Tag = ~p~n", [Tag]),
-%% 			io:format("Attributes = ~p~n", [Attributes]),
-%% 			io:format("Content = ~p~n", [Content]),
+			io:format("Attributes = ~p~n", [Attributes]),
+			io:format("Content = ~p~n", [Content]),
 			io:format("Content = ~p~n", [length(Content)]),
 %% 			[C1,C2,C3,C4] = Content,
 %% 			io:format("C1 = ~p, size = ~p~n", [C1,tuple_size(C1)]),
@@ -39,7 +40,8 @@ load()->
 %% 			io:format("C4 = ~p, size = ~p~n", [C4,tuple_size(C4)]),
 			
 			F = fun(C,Acc)->
-				io:format("C~p = ~p, size = ~p~n", [Acc,C,tuple_size(C)]),
+%% 				io:format("C~p = ~p, size = ~p~n", [Acc,C,tuple_size(C)]),
+				content_callback(C),
 				Acc+1
 			end,
 			lists:foldl(F,1, Content),
@@ -64,13 +66,30 @@ content_callback({"tileset",ContentAttributes,ContentData})->
 content_callback({"imagelayer",ContentAttributes,ContentData})->
 	ok;
 content_callback({"layer",ContentAttributes,ContentData})->
+	Height = list_to_integer(proplists:get_value("height", ContentAttributes)),
+	Width = list_to_integer(proplists:get_value("width", ContentAttributes)),
+	Name = proplists:get_value("name", ContentAttributes),
+	{"data",EncodingInfo,[DataInfo]} = lists:keyfind("data", 1, ContentData),
+%% 	io:format("DataInfo = ~p~n", [DataInfo]),
+	TokenList = string:tokens(DataInfo,"\r\n"),
+%% 	io:format("Format ---------->>> ~p~n", [string:tokens(DataInfo,"\r\n")]),
+%% 	TokenList = lists:merge(string:replace(DataInfo, "\r\n", "",all)),
+	FF = fun(Elem,{Dict,Num})->
+				 io:format("Format=====>>> ~p~n", [Elem]),
+				 {Dict,Num+1}
+		 end,
+	F = fun(Elem,Acc)->
+			TempList = string:tokens(Elem, ","),
+			lists:foldl(FF, {array:new([{size,Width}]),0}, TempList),
+			io:format("Format ---->>> ~p~n", [TempList])
+	end,
+	lists:foldl(F, {array:new([{size,Height}]),0}, TokenList),
+	#map_data_info{width = Width,height=Height},
 	ok;
 content_callback({"objectgroup",ContentAttributes,ContentData})->
 	ok;
 content_callback(_)->
 	ok.
-
-
 
 
 
